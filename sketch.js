@@ -1,6 +1,7 @@
 let canvasWidth = 640;
 let canvasHeight = 480;
 
+let catImg;
 let cat;
 let catX = 300;
 let catY = 100;
@@ -27,26 +28,32 @@ function enemyMovements() {
 
 
 function preload() {
-  console.log("hello∞");
-
-  cat = loadImage("images/cat.png")
-  hat = loadImage("images/my_other_one/sprite_0.png");
-  goomba = loadImage("images/my_foldR/sprite_20.png");
-  bonk = loadImage("images/bonk.png");
+  catImg = loadImage("images/cat.png")
+  //hat = loadImage("images/my_other_one/sprite_0.png");
+  //goomba = loadImage("images/my_foldR/sprite_20.png");
+  //bonk = loadImage("images/bonk.png");
 }
+
 function setup() {
-  print("setup");
-  console.log("me too");
+  // print("setup");
+  // console.log("me too");
+
+  //alert("setup");
 
   createCanvas(canvasWidth, canvasHeight);
 
-  enemies = new Group();
+  //background(127);
+
+  //enemies = new Group();
 
   //cat
 
   cat = createSprite(width/2, height/2, catX, catY);
   cat.addImage(catImg);
   //cat.add(catPlayer);
+
+
+  return;
 
   //sprite_0 (evil hat)
   hat_0 = createSprite(hat_0X, hat_0Y);
@@ -87,28 +94,13 @@ function playerControls() {
      }
 }
 function draw() {
+
+  // alert("draw");
+
   drawSprites();
-  playerControls();
-  background("beige");
+  //playerControls();
+  //background("beige");
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

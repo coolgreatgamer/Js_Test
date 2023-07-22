@@ -31,7 +31,7 @@ function preload() {
   catImg = loadImage("images/cat.png")
   //hat = loadImage("images/my_other_one/sprite_0.png");
   //goomba = loadImage("images/my_foldR/sprite_20.png");
-  //bonk = loadImage("images/bonk.png");
+  bonk = loadImage("images/bonk.png");
 }
 
 function setup() {
@@ -52,31 +52,32 @@ function setup() {
   cat.addImage(catImg);
   //cat.add(catPlayer);
 
+  // //sprite_0 (evil hat)
+  // hat_0 = createSprite(hat_0X, hat_0Y);
+  // hat_0.addImage(hatImg);
+  // enemies.add(sprite_0);
 
-  return;
-
-  //sprite_0 (evil hat)
-  hat_0 = createSprite(hat_0X, hat_0Y);
-  hat_0.addImage(hatImg);
-  enemies.add(sprite_0);
-
-  //sprite_20 (goomba)
-  gomba_20 = createSprite(goomba_20X, goomba_20Y);
-  gomba_20.addImage(goombaImg);
-  enemies.add(gomba_20)
+  // //sprite_20 (goomba)
+  // gomba_20 = createSprite(goomba_20X, goomba_20Y);
+  // gomba_20.addImage(goombaImg);
+  // enemies.add(gomba_20)
 
   //bonk (bOnK)
-  bonk = createSprite(bonkX, bonkY);
-  Bonk.addImage(bonkImg)
-  projectiles = new Group(bonk);
+  // bonk = createSprite(bonkX, bonkY);
+  // Bonk.addImage(bonkImg)
+  // projectiles = new Group(bonk);
 }
 
 function mousePressed() {
-  let projectile12345 = createSprite(cat.position.x, cat.position.y);
-  projectile12345.addImage("images/bonk.png");
+  let bonk = createSprite(cat.position.x, cat.position.y);
+  bonk.addImage("images/bonk.png");
   //projectile.setCollider("rectangle", 0, 0, 40, 40);
-  projectile.attractionPoint(10 + speed, mouseX, mouseY);
-  projectiles.add(projectile);
+
+  bonk.setSpeed(0.1,180);
+
+  //bonk.attractionPoint(10.0, mouseX, mouseY);
+  
+  //projectiles.add(projectile);
 }
 
 function playerControls() {
@@ -95,7 +96,7 @@ function playerControls() {
 }
 function draw() {
 
-  // alert("draw");
+  //alert("draw");
 
   drawSprites();
   //playerControls();

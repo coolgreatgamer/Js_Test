@@ -14,9 +14,9 @@ let gomba20;
 let gomba20X = 300;
 let gomba20Y = 100;
 
-let bong;
-let bongX = 300;
-let bongY = 100;
+let bonk;
+let bonkX = 300;
+let bonkY = 100;
 
 function enemyMovements() {
   direction += 2;
@@ -27,18 +27,24 @@ function enemyMovements() {
 
 
 function preload() {
-  catImg = loadImage("images/cat.png");
+  console.log("hello∞");
+
+  cat = loadImage("images/cat.png")
   hat = loadImage("images/my_other_one/sprite_0.png");
   goomba = loadImage("images/my_foldR/sprite_20.png");
-  bong = loadImage("images/bong.png");
+  bonk = loadImage("images/bonk.png");
 }
 function setup() {
+  print("setup");
+  console.log("me too");
+
   createCanvas(canvasWidth, canvasHeight);
 
   enemies = new Group();
 
   //cat
-  cat = createSprite(catX, catY);
+
+  cat = createSprite(width/2, height/2, catX, catY);
   cat.addImage(catImg);
   //cat.add(catPlayer);
 
@@ -52,17 +58,15 @@ function setup() {
   gomba_20.addImage(goombaImg);
   enemies.add(gomba_20)
 
-  //bong (bOnG)
-  bong = createSprite(bongX, bongY);
-  Bong.addImage(bongImg)
-  projectiles = new Group(bong);
-
-
-
+  //bonk (bOnK)
+  bonk = createSprite(bonkX, bonkY);
+  Bonk.addImage(bonkImg)
+  projectiles = new Group(bonk);
 }
+
 function mousePressed() {
   let projectile12345 = createSprite(cat.position.x, cat.position.y);
-  projectile12345.addImage("images/bong.png");
+  projectile12345.addImage("images/bonk.png");
   //projectile.setCollider("rectangle", 0, 0, 40, 40);
   projectile.attractionPoint(10 + speed, mouseX, mouseY);
   projectiles.add(projectile);
@@ -78,10 +82,13 @@ function playerControls() {
     if (keyIsDown(DOWN_ARROW)) { 
       player.position.y += speed;
     } 
-    if (keyIsDown(UP_ARROW)) { } 
+    if (keyIsDown(UP_ARROW)) {
+      player.position.y -= speed;
+     }
 }
 function draw() {
-  playerControls() 
+  drawSprites();
+  playerControls();
   background("beige");
 }
 
@@ -112,7 +119,7 @@ window.addEventListener("click", (e) => {
   alert("test")
   e.preventDefault();
   let projectile12345 = createSprite(cat.position.x, cat.position.y);
-  projectile12345.addImage("images/bong.png");
+  projectile12345.addImage("images/bonk.png");
   projectile.setCollider("rectangle", 0, 0, 40, 40);
   projectile.attractionPoint(10+speed, mouseX, mouseY); 
   projectiles.add(projectile); })

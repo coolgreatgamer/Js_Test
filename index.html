@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Move 'cat..ping' with Arrow Keys</title>
+    <title>Move cat with Arrow Keys</title>
 
     <script src="https://cdnjs.cloudfare.com/ajax/libs/p5.js/0.10.2/p5.js"></script>
     <script src="https://cdnjs.cloudfare.com/ajax/libs/p5.js/0.10.2/p5.play"></script>
@@ -12,60 +12,7 @@
 </head>
 <body>
     <script src="sketch.js"></script>
-    <canvas id="gameCanvas" width="800" height="600" style="border: 1px solid black;"></canvas>
-
-    <script>
-        const canvas = document.getElementById("gameCanvas");
-        const ctx = canvas.getContext("2d");
-
-        const CAT_WIDTH = 100;
-        const CAT_HEIGHT = 90;
-
-        let cat_x = canvas.width / 2;
-        let cat_y = canvas.height / 2;
-        const playerspeed = 22;
-
-        // Load the character image (replace 'cat..png' with your character's image file)
-        const cat_image = new Image();
-        cat_image.src = 'images/cat.png';
-
-        // Wait for the image to load before starting the game loop
-        cat_image.onload = () => {
-            function draw() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                ctx.drawImage(cat_image, cat_x, cat_y, CAT_WIDTH, CAT_HEIGHT);
-            }
-
-            function moveCharacter(event) {
-                const key = event.key;
-                switch (key) {
-                    case 'ArrowLeft':
-                        cat_x -= playerspeed;
-                        break;
-                    case 'ArrowRight':
-                        cat_x += playerspeed;
-                        break;
-                    case 'ArrowUp':
-                        cat_y -= playerspeed;
-                        break;
-                    case 'ArrowDown':
-                        cat_y += playerspeed;
-                        break;
-                    default:
-                        break;
-                }
-            }
-
-            window.addEventListener('keydown', moveCharacter);
-
-            function gameLoop() {
-                draw();
-                requestAnimationFrame(gameLoop);
-            }
-
-            // Start the game loop after the image has loaded
-            gameLoop();
-        };
-    </script>
+    <canvas id="gameCanvas" width="640" height="480" style="border: 1px solid black;"></canvas>
+    TEST ME PLEASE
 </body>
 </html>

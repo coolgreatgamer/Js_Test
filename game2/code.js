@@ -1,8 +1,25 @@
+let playerImg;
 let player;
-let playerX =300
-let playerY =100
+let playerX =32;
+let playerY =32;
 
-createCanvas(600, 600);
+function setup() {
+  createCanvas(600, 600);
+	player = new Sprite(width/2, height/2, playerX, playerY);
+  player.addImage(playerImg);
+}
+function draw() {
+  drawSprites();
+  //player.draw();
+  //playerControls();
+  background("black");
+}
+
+
+function preload() {
+  playerImg = loadImage("player.png")
+
+}
 
 
 function playerControls() {

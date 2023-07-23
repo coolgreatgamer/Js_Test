@@ -3,16 +3,19 @@ let player;
 let playerX =32;
 let playerY =32;
 
+let group;
+
 function setup() {
   createCanvas(600, 600);
+
+  //group = new group()
 	player = new Sprite(width/2, height/2, playerX, playerY);
   player.addImage(playerImg);
 }
+
 function draw() {
-  drawSprites();
-  //player.draw();
-  //playerControls();
   background("black");
+  drawSprites();
 }
 
 

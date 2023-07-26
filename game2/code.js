@@ -24,13 +24,36 @@ function setup() {
   //group = new group()
 	player = new Sprite(width/2, height/2, playerX, playerY);
   player.addImage(playerImg);
-  enemy = new Sprite(width/2, height/2, 50, 50);
+  enemy = new Sprite(width/2, height/2, 100, 50);
   enemy.addImage(playerImg);
+}
+
+function makeEnemyFollow()
+{
+  if (player.position.x > enemy.position.x) {
+    enemy.position.x = enemy.position.x + 0.5;
+  }
+  
+  if (player.position.x < enemy.position.x) {
+    enemy.position.x = enemy.position.x - 0.5;
+  }
+
+  
+  if (player.position.y > enemy.position.y) {
+    enemy.position.y = enemy.position.y + 5;
+  }
+  
+  if (player.position.y < enemy.position.y) {
+    enemy.position.y = enemy.position.y - 5;
+  }
 }
 
 function draw() {
   background("black");
   drawSprites();
+  
+  makeEnemyFollow();
+
   if (kb.pressing(RIGHT_ARROW)) {
     player.position.x += speed;
     if (player.position.x > 600) {
@@ -44,10 +67,10 @@ function draw() {
     }
 
   } 
-  if (kb.pressing(DOWN_ARROW)) { 
-    player.position.y += speed;
+  //if (kb.pressing(DOWN_ARROW)) { 
+    //player.position.y += speed;
      //disabeled due to the type of game.
-  } 
+  //} 
   if (kb.pressing(UP_ARROW)) {
     player.position.y -= speed;
     if (player.position.y < 0) {

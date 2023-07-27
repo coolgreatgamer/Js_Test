@@ -24,18 +24,18 @@ function setup() {
   //group = new group()
 	player = new Sprite(width/2, height/2, playerX, playerY);
   player.addImage(playerImg);
-  enemy = new Sprite(width/2, height/2, 100, 50);
-  enemy.addImage(playerImg);
+  enemy = new Sprite(width/2, height/2, 32, 32);
+  enemy.addImage(enemyImg);
 }
 
 function makeEnemyFollow()
 {
   if (player.position.x > enemy.position.x) {
-    enemy.position.x = enemy.position.x + 0.5;
+    enemy.position.x = enemy.position.x + 1;
   }
   
   if (player.position.x < enemy.position.x) {
-    enemy.position.x = enemy.position.x - 0.5;
+    enemy.position.x = enemy.position.x - 1;
   }
 
   
@@ -53,6 +53,10 @@ function draw() {
   drawSprites();
   
   makeEnemyFollow();
+
+  //if (player.isTouching(enemy)) {
+  //  alert("you lose!")
+  //}
 
   if (kb.pressing(RIGHT_ARROW)) {
     player.position.x += speed;
@@ -77,13 +81,38 @@ function draw() {
       player.position.y = 0;
     }
   }
+ 
   
+
+
+
+
+
+
+    if (enemy.position.x > 600) {
+      enemy.position.x = 600;
+    }
+
+    if (enemy.position.x < 0) {
+      enemy.position.x = 0;
+    }
+
+  
+    if (enemy.position.y < 0) {
+      enemy.position.y = 0;
+    }
+ 
 }
+
+
+
+
 
 
 
 function preload() {
   playerImg = loadImage("player.png")
+  enemyImg = loadImage("enemy.png")
 
 }
 

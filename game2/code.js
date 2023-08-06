@@ -24,7 +24,7 @@ function setup() {
   //group = new group()
 	player = new Sprite(width/2, height/2, playerX, playerY);
   player.addImage(playerImg);
-  enemy = new Sprite(width/2, height/2, 32, 32);
+  enemy = new Sprite(100, 100, 32, 32);
   enemy.addImage(enemyImg);
 }
 
@@ -49,25 +49,43 @@ function makeEnemyFollow()
 }
 
 function draw() {
+
+
+
+  player.collide(enemy, lose);
+  function lose(player) {
+    player.remove();
+    alert("nice try!")
+  }
+  //enemy.removeColliders();
+
+  
   background("black");
-  drawSprites();
+  //drawSprites();
   
   makeEnemyFollow();
 
-  //if (player.isTouching(enemy)) {
-  //  alert("you lose!")
-  //}
+  //if you touch the enemy it will alert "nice try!"
+
+    if (player.position == enemy.position) {
+    
+    }
+
+
+
 
   if (kb.pressing(RIGHT_ARROW)) {
     player.position.x += speed;
     if (player.position.x > 600) {
       player.position.x = 600;
+      world.gravity.y = 5;
     }
   } 
   if (kb.pressing(LEFT_ARROW)) {
     player.position.x -= speed;
     if (player.position.x < 0) {
       player.position.x = 0;
+      world.gravity.y = 5;
     }
 
   } 
@@ -79,6 +97,7 @@ function draw() {
     player.position.y -= speed;
     if (player.position.y < 0) {
       player.position.y = 0;
+      world.gravity.y = 5;
     }
   }
  

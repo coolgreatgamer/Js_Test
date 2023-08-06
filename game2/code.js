@@ -1,12 +1,13 @@
 let playerImg;
 let player;
-let playerX =32;
-let playerY =32;
+let playerSize =32;
 let floor
 let group;
 
 let enemyImg;
 let enemy;
+let enemySize = 32;
+let canvasSize = 600;
 
 let speed = 5;
 
@@ -19,12 +20,12 @@ function setup() {
   floor = new Sprite(10, 100, 300, 4, 's');
   floor = new Sprite(10, 50, 100, 4, 's');
   
-  createCanvas(600, 600);
+  createCanvas(canvasSize, canvasSize);
 
   //group = new group()
-	player = new Sprite(width/2, height/2, playerX, playerY);
+	player = new Sprite(width/2, height/2, playerSize, playerSize);
   player.addImage(playerImg);
-  enemy = new Sprite(100, 100, 32, 32);
+  enemy = new Sprite(100, 100, enemySize, enemySize);
   enemy.addImage(enemyImg);
 }
 
@@ -56,47 +57,47 @@ function draw() {
   function lose(player) {
     player.remove();
     alert("nice try!")
-  }
-  //enemy.removeColliders();
-
+  }  
+//if you touch the enemy it will alert "nice try!"
   
   background("black");
   //drawSprites();
   
   makeEnemyFollow();
 
-  //if you touch the enemy it will alert "nice try!"
-
-    if (player.position == enemy.position) {
-    
-    }
-
+  
 
 
 
   if (kb.pressing(RIGHT_ARROW)) {
     player.position.x += speed;
-    if (player.position.x > 600) {
-      player.position.x = 600;
+    if (player.position.x > canvasSize - playerSize / 2) {
+      player.position.x = canvasSize - playerSize / 2;
       world.gravity.y = 5;
     }
   } 
   if (kb.pressing(LEFT_ARROW)) {
     player.position.x -= speed;
-    if (player.position.x < 0) {
-      player.position.x = 0;
+    if (player.position.x < playerSize / 2) {
+      player.position.x = playerSize / 2;
       world.gravity.y = 5;
     }
 
   } 
-  //if (kb.pressing(DOWN_ARROW)) { 
-    //player.position.y += speed;
+  if (kb.pressing(DOWN_ARROW)) { 
+    player.position.y += speed;
      //disabeled due to the type of game.
-  //} 
+     world.gravity.y = 0
+
+     if (player.position.y > 600) {
+      player.position.y = 600;
+      
+    }
+  } 
   if (kb.pressing(UP_ARROW)) {
     player.position.y -= speed;
-    if (player.position.y < 0) {
-      player.position.y = 0;
+    if (player.position.y < playerSize / 2) {
+      player.position.y = playerSize / 2;
       world.gravity.y = 5;
     }
   }

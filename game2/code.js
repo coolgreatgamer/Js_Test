@@ -1,3 +1,4 @@
+var mcs = [];
 let playerImg;
 let player;
 let playerSize =32;
@@ -29,23 +30,27 @@ function setup() {
   enemy.addImage(enemyImg);
 }
 
-function makeEnemyFollow()
+//function makeEnemyFollow()
+function makeEnemyFollow(value, index, array) 
 {
-  if (player.position.x > enemy.position.x) {
-    enemy.position.x = enemy.position.x + 1;
+
+  
+
+  if (player.position.x > array.position.x) {
+    array.position.x = array.position.x + 1;
   }
   
-  if (player.position.x < enemy.position.x) {
-    enemy.position.x = enemy.position.x - 1;
+  if (player.position.x < array.position.x) {
+    array.position.x = array.position.x - 1;
   }
 
   
-  if (player.position.y > enemy.position.y) {
-    enemy.position.y = enemy.position.y + 5;
+  if (player.position.y > array.position.y) {
+    array.position.y = array.position.y + 5;
   }
   
-  if (player.position.y < enemy.position.y) {
-    enemy.position.y = enemy.position.y - 5;
+  if (player.position.y < array.position.y) {
+    array.position.y = array.position.y - 5;
   }
 }
 
@@ -63,11 +68,16 @@ function draw() {
   background("black");
   //drawSprites();
   
-  makeEnemyFollow();
+  //makeEnemyFollow();
 
-  
+  mcs.forEach(makeEnemyFollow);
 
 
+  if (kb.presses('space')) {
+    enemy = new Sprite(100, 100, enemySize, enemySize);
+    enemy.addImage(enemyImg);
+    mcs.push(enemy);    
+  }
 
   if (kb.pressing(RIGHT_ARROW)) {
     player.position.x += speed;

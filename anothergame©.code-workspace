@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"name": "game2",
+			"path": "game2"
+		}
+	],
+	"settings": {
+		"liveServer.settings.port": 5501
+	}
+}

@@ -5,14 +5,13 @@ let playerSize =32;
 let floor
 let group;
 
-let enemyImg;
-let enemy;
 let enemySize = 32;
 let canvasSize = 600;
 
 let speed = 5;
 
 function setup() {
+  
   world.gravity.y = 5;
 	floor = new Sprite(10, 500, 1500, 4, 's');
   floor = new Sprite(10, 400, 900, 4, 's');
@@ -26,67 +25,19 @@ function setup() {
   //group = new group()
 	player = new Sprite(width/2, height/2, playerSize, playerSize);
   player.addImage(playerImg);
-  enemy = new Sprite(100, 100, enemySize, enemySize);
-  enemy.addImage(enemyImg);
 }
 
-//function makeEnemyFollow()
-function makeEnemyFollow(value, index, array) 
-{
-
+//example:RIGHT_ARROW or LEFT_ARROW
   
 
-  if (player.position.x > array.position.x) {
-    array.position.x = array.position.x + 1;
-  }
-  
-  if (player.position.x < array.position.x) {
-    array.position.x = array.position.x - 1;
-  }
-
-  
-  if (player.position.y > array.position.y) {
-    array.position.y = array.position.y + 5;
-  }
-  
-  if (player.position.y < array.position.y) {
-    array.position.y = array.position.y - 5;
-  }
-}
-
-function draw() {
-
-
-
-  player.collide(enemy, lose);
-  function lose(player) {
-    player.remove();
-    alert("nice try!")
-  }  
-//if you touch the enemy it will alert "nice try!"
-  
-  background("black");
-  //drawSprites();
-  
-  //makeEnemyFollow();
-
-  mcs.forEach(makeEnemyFollow);
-
-
-  if (kb.presses('space')) {
-    enemy = new Sprite(100, 100, enemySize, enemySize);
-    enemy.addImage(enemyImg);
-    mcs.push(enemy);    
-  }
-
-  if (kb.pressing(RIGHT_ARROW)) {
+  if (kb.pressing('right')) {
     player.position.x += speed;
     if (player.position.x > canvasSize - playerSize / 2) {
       player.position.x = canvasSize - playerSize / 2;
       world.gravity.y = 5;
     }
   } 
-  if (kb.pressing(LEFT_ARROW)) {
+  if (kb.pressing('left')) {
     player.position.x -= speed;
     if (player.position.x < playerSize / 2) {
       player.position.x = playerSize / 2;
@@ -94,7 +45,7 @@ function draw() {
     }
 
   } 
-  if (kb.pressing(DOWN_ARROW)) { 
+  if (kb.pressing('down')) { 
     player.position.y += speed;
      //disabeled due to the type of game.
      world.gravity.y = 0
@@ -104,41 +55,13 @@ function draw() {
       
     }
   } 
-  if (kb.pressing(UP_ARROW)) {
+  if (kb.pressing('up')) {
     player.position.y -= speed;
     if (player.position.y < playerSize / 2) {
       player.position.y = playerSize / 2;
       world.gravity.y = 5;
     }
   }
- 
-  
-
-
-
-
-
-
-    if (enemy.position.x > 600) {
-      enemy.position.x = 600;
-    }
-
-    if (enemy.position.x < 0) {
-      enemy.position.x = 0;
-    }
-
-  
-    if (enemy.position.y < 0) {
-      enemy.position.y = 0;
-    }
- 
-}
-
-
-
-
-
-
 
 function preload() {
   playerImg = loadImage("player.png")

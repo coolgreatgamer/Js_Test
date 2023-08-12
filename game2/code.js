@@ -26,35 +26,44 @@ function setup() {
   //group = new group()
 	player = new Sprite(width/2, height/2, playerSize, playerSize);
   player.addImage(playerImg);
+  //
+  lava =new Sprite(width/2, height/2, 16, 64);
+  lava.addImage(lavaImg);
+  //
   enemy = new Sprite(100, 100, enemySize, enemySize);
   enemy.addImage(enemyImg);
+  mcs.push(enemy);
 }
 
 //function makeEnemyFollow()
 function makeEnemyFollow(value, index, array) 
 {
-
+  let item = value;
   
-
-  if (player.position.x > array.position.x) {
-    array.position.x = array.position.x + 1;
+  if (player.position.x > item.position.x) {
+    item.position.x = item.position.x + 1;
   }
   
-  if (player.position.x < array.position.x) {
-    array.position.x = array.position.x - 1;
+  if (player.position.x < item.position.x) {
+    item.position.x = item.position.x - 1;
   }
 
   
-  if (player.position.y > array.position.y) {
-    array.position.y = array.position.y + 5;
+  if (player.position.y > item.position.y) {
+    item.position.y = item.position.y + 5;
   }
   
-  if (player.position.y < array.position.y) {
-    array.position.y = array.position.y - 5;
+  if (player.position.y < item.position.y) {
+    item.position.y = item.position.y - 5;
   }
 }
 
 function draw() {
+  enemy.collide(lava, enemydie)
+  function enemydie(enemy) {
+    enemy.remove();
+    alert("enemy touched lava")
+  }
 
 
 
@@ -76,6 +85,9 @@ function draw() {
   if (kb.presses('space')) {
     enemy = new Sprite(100, 100, enemySize, enemySize);
     enemy.addImage(enemyImg);
+
+    //alert(enemy);
+
     mcs.push(enemy);    
   }
 
@@ -143,6 +155,7 @@ function draw() {
 function preload() {
   playerImg = loadImage("player.png")
   enemyImg = loadImage("enemy.png")
+  lavaImg = loadImage("lava.png")
 
 }
 

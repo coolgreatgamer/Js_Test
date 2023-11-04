@@ -7,13 +7,14 @@ function setup() {
 	player.scale = 2;
 	player.img = 'mario.png';
 	//player.debug = mouse.pressing();
-	floor = new Sprite(250, 250, 1000, 40, 'static');
+	//                   X    Y
+	floor = new Sprite(250, 600, 10000, 40, 'static');
 
 }
 
 function draw() {
 	clear();
-	if (mouse.presses()) {
+	if (contro.pressing('a')) {
 		player.vel.y = -4;
 		player.vel.x = 3;
 	}

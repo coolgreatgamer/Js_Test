@@ -1,8 +1,20 @@
 let player, floor;
 
+let dots;
+
 function setup() {
 	new Canvas(500, 500);
 
+	dots = new Group();
+	dots.color = 'white';
+	dots.diameter = 10;
+
+	for (let i=0;i<10;i++)
+	{
+		let dot = new dots.Sprite()
+		dot.x = i*5;
+		dot.y = i*5;
+	}
 	
 	//world.gravity.y = 10;
 
@@ -20,7 +32,7 @@ function draw() {
 	clear();
 
 	background(51);
-	
+
 	if (kb.presses('space')) {
 		//player.vel.y = -4;
 		//player.vel.x = 3;

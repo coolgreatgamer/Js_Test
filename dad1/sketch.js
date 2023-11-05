@@ -48,17 +48,14 @@ function updateDots()
 	for (var i = 0; i<count;i++)
 	{
 
-		let spr = dots[i];
-
-
-		spr.moveTo(0.0,0.0);
+		//dots[i].moveTo(0.0,0.0);
 
 		//(dots[i]).moveTo(0,0);
 
-		for (var j in dots)
+		for (var j = 0; j<count;j++)
 		{
 			//dots[i].moveTowards(mouse, 0.10);
-			//dots[i].moveTo(0,0,1.0);
+			dots[i].moveTowards(dots[j].x, dots[j].y);
 		}
 
 		//dots[i].direction = 90;

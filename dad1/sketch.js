@@ -10,12 +10,12 @@ function setup() {
 	new Canvas(500, 500);
 
 	dots = new Group();
-	dots.color = 'white';
-	dots.diameter = 10;
+	//dots.color = 'white';
+	dots.diameter = 5;
 
 	for (let i=0;i<count;i++)
 	{
-		let dot = new dots.Sprite()
+		let dot = new dots.Sprite()  
 		dot.x = random() * 500;
 		dot.y = random() * 500;
 
@@ -60,7 +60,15 @@ function updateDots()
 		for (var j = 0; j<count;j++)
 		{
 			//dots[i].moveTowards(dots[j].x, dots[j].y,0.01);
-			dots[i].attractTo(dots[j],1.0);
+			dots[i].attractTo(dots[j],0.01);
+		}
+
+		let d = distt(mouse, dots[i]);
+
+		//alert("test:" +d);
+
+		if (typeof d !== 'undefined') {
+			dots[i].moveAway(mouse, 1.0/d);
 		}
 
 		//dots[i].direction = 90;
@@ -70,4 +78,14 @@ function updateDots()
 		//dots[i].x = dots[i].x + (random() * 2 - 1);
 		//dots.diameter = 1;
 	}
+}
+
+function distt(ob1, ob2)
+{
+	let x = Math.pow(ob1.x-ob2.x,2);	
+	let y = Math.pow(ob1.y-ob2.y,2);
+
+	let d = Math.sqrt(x+y);
+
+	return d;
 }

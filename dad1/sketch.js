@@ -2,6 +2,10 @@ let player, floor;
 
 let dots;
 
+let count = 10;
+
+let gameSpeed = 1.0;
+
 function setup() {
 	new Canvas(500, 500);
 
@@ -9,11 +13,14 @@ function setup() {
 	dots.color = 'white';
 	dots.diameter = 10;
 
-	for (let i=0;i<10;i++)
+	for (let i=0;i<count;i++)
 	{
 		let dot = new dots.Sprite()
-		dot.x = i*5;
-		dot.y = i*5;
+		dot.x = random() * 500;
+		dot.y = random() * 500;
+
+		dot.direction = random() * 360;
+		dot.speed = gameSpeed;
 	}
 	
 	//world.gravity.y = 10;
@@ -28,8 +35,11 @@ function setup() {
 
 }
 
+
 function draw() {
+
 	clear();
+	updateDots();
 
 	background(51);
 
@@ -39,4 +49,17 @@ function draw() {
 	}
 
 	//camera.x = player.x;
+}
+
+function updateDots()
+{
+	for (var i in dots)
+	{
+		//dots[i].direction = 90;
+		//dots[i].speed = 0.1;
+		//dots[i].x += 1;
+		//dots[i].diameter = 1; //1/dots[i].x;
+		//dots[i].x = dots[i].x + (random() * 2 - 1);
+		//dots.diameter = 1;
+	}
 }

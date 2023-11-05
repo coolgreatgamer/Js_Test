@@ -26,12 +26,12 @@ let sprit;
 
 function setup() {
 	new Canvas(700, 700);
-	sprit = new sprite();
+	sprit = new Sprite();
 	sprit.width = 50;
 	sprit.height = 50;
-	player.debug = mouse.pressing();
-	if (kb.presses('left')) sprite.rotateTo(-90, 5);
-	if (kb.presses('right')) sprite.rotateTo(0, 5);
+	sprit.debug = mouse.pressing();
+	if (kb.presses('left')) sprit.rotateTo(-90, 5);
+	if (kb.presses('right')) sprit.rotateTo(0, 5);
 
 }
 //if (kb.pressing('space')) sprite.rotation = 90;

@@ -30,9 +30,9 @@ function setup() {
 	sprit.width = 50;
 	sprit.height = 50;
 	sprit.debug = mouse.pressing();
-	if (kb.presses('left')) sprit.rotateTo(-90, 5);
-	if (kb.presses('right')) sprit.rotateTo(0, 5);
-
 }
+function draw() {
+if (kb.presses('left')) sprit.rotateTo(-90, 5);
+if (kb.presses('right')) sprit.rotateTo(0, 5);}
 //if (kb.pressing('space')) sprite.rotation = 90;
 //else sprite.rotation = 0;

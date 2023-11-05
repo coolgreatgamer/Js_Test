@@ -19,20 +19,12 @@ function setup() {
 		dot.x = random() * 500;
 		dot.y = random() * 500;
 
-		dot.direction = random() * 360;
-		dot.speed = gameSpeed;
+		// dot.direction = random() * 360;
+		// dot.speed = gameSpeed;
+
+		dot.vel.x = 0.0;
+		dot.vel.y = 0.0;
 	}
-	
-	//world.gravity.y = 10;
-
-	//player = new Sprite();
-	//player.scale = 2;
-	//player.img = 'mario.png';
-	
-	//player.debug = mouse.pressing();
-	//                   X    Y
-	//floor = new Sprite(250, 600, 10000, 40, 'static');
-
 }
 
 
@@ -53,8 +45,22 @@ function draw() {
 
 function updateDots()
 {
-	for (var i in dots)
+	for (var i = 0; i<count;i++)
 	{
+
+		let spr = dots[i];
+
+
+		spr.moveTo(0.0,0.0);
+
+		//(dots[i]).moveTo(0,0);
+
+		for (var j in dots)
+		{
+			//dots[i].moveTowards(mouse, 0.10);
+			//dots[i].moveTo(0,0,1.0);
+		}
+
 		//dots[i].direction = 90;
 		//dots[i].speed = 0.1;
 		//dots[i].x += 1;

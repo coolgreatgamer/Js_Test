@@ -10,12 +10,12 @@ function setup() {
 	new Canvas(500, 500);
 
 	dots = new Group();
-	dots.color = 'white';
-	dots.diameter = 10;
+	//dots.color = 'white';
+	dots.diameter = 5;
 
 	for (let i=0;i<count;i++)
 	{
-		let dot = new dots.Sprite()
+		let dot = new dots.Sprite()  
 		dot.x = random() * 500;
 		dot.y = random() * 500;
 
@@ -48,10 +48,10 @@ function updateDots()
 	for (var i = 0; i<count;i++)
 	{
 
-		if (dots[i].x < 5) dots[i].x = 5;
-		if (dots[i].y < 5) dots[i].y = 5;
-		if (dots[i].x > 455) dots[i].x = 455;
-		if (dots[i].y > 455) dots[i].y = 455;
+		if (dots[i].x < 5) dots[i].vel.x = Math.abs(dots[i].vel.x);
+		if (dots[i].y < 5) dots[i].vel.y = Math.abs(dots[i].vel.y);
+		if (dots[i].x > 455) dots[i].vel.x = -Math.abs(dots[i].vel.x);
+		if (dots[i].y > 455) dots[i].vel.y = -Math.abs(dots[i].vel.y);
 
 		//dots[i].moveTo(0.0,0.0);
 
@@ -59,9 +59,20 @@ function updateDots()
 
 		for (var j = 0; j<count;j++)
 		{
+			//let d2 = distt(dots[j], dots[i]);
+
 			//dots[i].moveTowards(dots[j].x, dots[j].y,0.01);
-			dots[i].attractTo(dots[j],1.0);
+			//dots[i].attractTo(dots[j],30.0/d2);
+			attract(dots[i], dots[j], -0.1);
 		}
+
+
+		attract(dots[i], mouse, 5.0);
+
+		// let d = distt(mouse, dots[i]);
+		// if (typeof d !== 'undefined') {
+		// 	dots[i].moveAway(mouse, 10.0/d);
+		// }
 
 		//dots[i].direction = 90;
 		//dots[i].speed = 0.1;
@@ -70,4 +81,28 @@ function updateDots()
 		//dots[i].x = dots[i].x + (random() * 2 - 1);
 		//dots.diameter = 1;
 	}
+}
+
+function attract(ob1, ob2, str)
+{
+	let d = distt(ob1,ob2);
+
+	if (typeof d == 'undefined') return;
+	if (d == 0) return;
+
+	ob1.vel.x += (ob1.x-ob2.x) / d * str;
+	ob1.vel.y += (ob1.y-ob2.y) / d * str;
+
+}
+
+
+function distt(ob1, ob2)
+{
+	let x = Math.pow(ob1.x-ob2.x,2);	
+	let y = Math.pow(ob1.y-ob2.y,2);
+
+	let d = x+y;
+	//let d = Math.sqrt(x+y);
+
+	return d;
 }

@@ -22,17 +22,28 @@ function draw() {
 	camera.x = player.x;
 }
 */
-let sprit;
+let sprit ;
+
+
 
 function setup() {
-	new Canvas(700, 700);
+
+	let fs = fullscreen();
+	//fullscreen(!fs);
+	//new Canvas(700, 700);
+	textSize(30);
+	
+	
 	sprit = new Sprite();
+	sprit.img = 'a.png';
 	sprit.width = 50;
 	sprit.height = 50;
 	sprit.debug = mouse.pressing();
 }
 function draw() {
-if (kb.presses('left')) sprit.rotateTo(-90, 5);
-if (kb.presses('right')) sprit.rotateTo(0, 5);}
+	clear();
+	if (kb.presses('left')) sprit.rotate(45, 5);
+	if (kb.presses('right')) sprit.rotate(45, 5);
+}
 //if (kb.pressing('space')) sprite.rotation = 90;
 //else sprite.rotation = 0;

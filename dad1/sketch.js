@@ -48,10 +48,10 @@ function updateDots()
 	for (var i = 0; i<count;i++)
 	{
 
-		if (dots[i].x < 5) dots[i].x = 5;
-		if (dots[i].y < 5) dots[i].y = 5;
-		if (dots[i].x > 455) dots[i].x = 455;
-		if (dots[i].y > 455) dots[i].y = 455;
+		if (dots[i].x < 5) dots[i].vel.x = Math.abs(dots[i].vel.x);
+		if (dots[i].y < 5) dots[i].vel.y = Math.abs(dots[i].vel.y);
+		if (dots[i].x > 455) dots[i].vel.x = -Math.abs(dots[i].vel.x);
+		if (dots[i].y > 455) dots[i].vel.y = -Math.abs(dots[i].vel.y);
 
 		//dots[i].moveTo(0.0,0.0);
 
@@ -63,11 +63,11 @@ function updateDots()
 
 			//dots[i].moveTowards(dots[j].x, dots[j].y,0.01);
 			//dots[i].attractTo(dots[j],30.0/d2);
-			attract(dots[i], dots[j], -1.0);
+			attract(dots[i], dots[j], -0.1);
 		}
 
 
-		attract(dots[i], mouse, 1.0);
+		attract(dots[i], mouse, 5.0);
 
 		// let d = distt(mouse, dots[i]);
 		// if (typeof d !== 'undefined') {

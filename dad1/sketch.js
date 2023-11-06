@@ -59,17 +59,20 @@ function updateDots()
 
 		for (var j = 0; j<count;j++)
 		{
+			//let d2 = distt(dots[j], dots[i]);
+
 			//dots[i].moveTowards(dots[j].x, dots[j].y,0.01);
-			dots[i].attractTo(dots[j],0.01);
+			//dots[i].attractTo(dots[j],30.0/d2);
+			attract(dots[i], dots[j], -1.0);
 		}
 
-		let d = distt(mouse, dots[i]);
 
-		//alert("test:" +d);
+		attract(dots[i], mouse, 1.0);
 
-		if (typeof d !== 'undefined') {
-			dots[i].moveAway(mouse, 1.0/d);
-		}
+		// let d = distt(mouse, dots[i]);
+		// if (typeof d !== 'undefined') {
+		// 	dots[i].moveAway(mouse, 10.0/d);
+		// }
 
 		//dots[i].direction = 90;
 		//dots[i].speed = 0.1;
@@ -80,12 +83,26 @@ function updateDots()
 	}
 }
 
+function attract(ob1, ob2, str)
+{
+	let d = distt(ob1,ob2);
+
+	if (typeof d == 'undefined') return;
+	if (d == 0) return;
+
+	ob1.vel.x += (ob1.x-ob2.x) / d * str;
+	ob1.vel.y += (ob1.y-ob2.y) / d * str;
+
+}
+
+
 function distt(ob1, ob2)
 {
 	let x = Math.pow(ob1.x-ob2.x,2);	
 	let y = Math.pow(ob1.y-ob2.y,2);
 
-	let d = Math.sqrt(x+y);
+	let d = x+y;
+	//let d = Math.sqrt(x+y);
 
 	return d;
 }
